@@ -1,0 +1,77 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Product {
+  id: ID!
+  name: String!
+  price: Float!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  age: Int!
+  orders: [Product!]!
+}
+
+type PaginatedUser {
+  page: Int
+  perPage: Int
+  count: Int
+  data: [User!]!
+}
+
+type PaginatedProduct {
+  page: Int
+  perPage: Int
+  count: Int
+  data: [Product!]!
+}
+
+type Query {
+  users(paginationArgs: PaginationInput!): PaginatedUser!
+  user(id: String!): User!
+  products(paginationArgs: PaginationInput!): PaginatedProduct!
+  product(id: String!): Product!
+}
+
+input PaginationInput {
+  page: Int!
+  perPage: Int!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: String!): User!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  removeProduct(id: String!): Product!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  age: Int!
+  orders: [CreateProductInput!]!
+}
+
+input CreateProductInput {
+  name: String!
+  price: Float!
+}
+
+input UpdateUserInput {
+  name: String
+  age: Int
+  orders: [CreateProductInput!]
+  id: ID!
+}
+
+input UpdateProductInput {
+  name: String
+  price: Float
+  id: ID!
+}
